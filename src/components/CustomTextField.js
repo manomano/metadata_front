@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
+import React, {useState, useEffect} from 'react';
 //import injectSheet from 'react-jss'
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Popover from '@material-ui/core/Popover';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
+import Box from '@material-ui/core/Box';
 
 
 const useStyles = makeStyles(theme => ({
-    typography: {
-        padding: '3%',
-        /*'& div':{padding:'10px'},*/
-        '& label':{'font-weight':'bold'}
-    },
+  typography: {
+    padding: '3%',
+    /*'& div':{padding:'10px'},*/
+    '& label': {'font-weight': 'bold'}
+  },
 
   container: {
-    display: 'column',
-    width:'80%',
+    // display: 'column',
+    width: '40%',
     /*flexWrap: 'wrap',*/
   },
   textField: {
@@ -27,117 +27,160 @@ const useStyles = makeStyles(theme => ({
   dense: {
     marginTop: theme.spacing(2),
   },
-  button:{margin:'0 0 0 0'}
- /* menu: {
-    width: 200,
-  },*/
+  button: {margin: '0 0 0 0'}
+  /* menu: {
+     width: 200,
+   },*/
 }));
 
 
 function Customtextfield(props) {
 
   const classes = useStyles();
-
-
   const [anchorEl, setAnchorEl] = useState(null);
-  const [elementsArr, setElementsArr] = useState([...props.elementsArr]);
+  const elementsArrCopy = [...props.elementsArr]
 
 
-  elementsArr.pop();
+  if(props.value.map){
+    elementsArrCopy.splice(0,1)
+  }
 
-  console.log(props.nums, elementsArr);
+  const dada = props.value.map?[...(elementsArrCopy)]:[props.elementsArr];
+
+  const [elementsArr, setElementsArr] = useState(dada);
+
+  /*useEffect(() => {
+    elementsArr.shift();
+    setElementsArr(elementsArr => [...elementsArr])
+
+
+  }, []);*/
+
+
+  if (props.value.map) {
+    console.log(props.nums, elementsArr);
+  }
+
 
   const open = Boolean(anchorEl);
+
   function handleClick(event) {
     setAnchorEl(event.currentTarget);
   }
 
-   function handleClose() {
+  function handleClose() {
     setAnchorEl(null);
   }
 
   function addElement() {
 
+    /*setElementsArr([...elementsArr, ""]);
+    console.log(elementsArr)*/
+    props.addElement(props.nums);
   }
 
-      return (
-        <div className={classes.container}>
-          <TextField
-            id="standard-name"
-            label={props.label}
-            value={(props.value.map?props.value[0]:props.value)}
-            //onChange={props.handleChange(this.value)}
-            margin="normal"
-            className={classes.textField}
-            variant="outlined"
-            fullWidth
-          />
-          <Button aria-describedby={props.num} variant="contained" onClick={handleClick}>
-            Open Popover
-          </Button>
+  function removeElement(i) {
+   /* elementsArr.splice(i, 1)
+    setElementsArr([...elementsArr]);*/
+   props.removeElement(props.nums,i);
+  }
 
 
+  //aq isaa problema rom i -uri elementi ar vici vinaa, anu araswored vezeb
+
+  return (
+    <Box display="flex"
+         flexWrap="wrap"
+         p={3}
+         m={1}
+         css={{maxWidth: 900, border: '1px solid #ececec', borderRadius: 7}}>
+      <Box component="div" css={{width: 550}} display="inline" p={1} m={1}>
+        <TextField
+          id="standard-name"
+          label={props.label}
+          value={(props.value.map ? props.value[0] : props.value)}
+          //onChange={props.handleChange(this.value)}
+          margin="normal"
+          className={classes.textField}
+          variant="outlined"
+          fullWidth
+        />
+      </Box>
+      <Box component="span" display="inline-block" css={{marginTop: 25}} p={1} m={1}>
+        <Button aria-describedby={props.num} variant="contained" onClick={handleClick}>
+          Open Popover
+        </Button>
+      </Box>
+      {props.value.map ?
+        <Box component="div" display="inline-block" css={{marginTop: 25}} p={1} m={1}>
           <Button variant="contained" onClick={addElement} className={classes.button}>+</Button>
-          <div>
-          {
-            props.value.map?
-            elementsArr.map((row, i) =>
-              <div key={i}>
-                <TextField
-                  id="standard-name"
-                  label={props.label}
-                  value={props.value[i]}
-                  //onChange={props.handleChange(this.value)}
-                  margin="normal"
-                  className={classes.textField}
-                  variant="outlined"
-                  fullWidth
-                />
-              </div>
-            ):''
+        </Box> : ""}
+      <Box component="div" display="block" css={{paddingLeft: 15}}>
+        {
+          props.value.map ?
+            props.elementsArr.slice(1,props.elementsArr.length).map((row, i) =>
 
-          }
+              <Box display="flex"
+                   flexWrap="wrap" css={{height: 65, border: '0px solid green'}} key={"cont_" + i+1}>
+                <Box display="inline-block" css={{width: 550}} key={i+1}>
+                  <TextField
+                    label={props.label}
+                    value={props.value[i+1]}
+                    //onChange={props.handleChange(this.value)}
+                    margin="normal"
+                    className={classes.textField}
+                    variant="outlined"
+                    fullWidth
+                  />
+                </Box>
+                <Box display="inline-block" css={{marginTop: 20, marginLeft: 30, height: 40}} key={"delete_" + i}>
+                  <Button variant="contained" className={classes.button} onClick={() => {
+                    removeElement(i+1)
+                  }}>X</Button>
+                </Box>
+              </Box>
+            ) : ''
+
+        }
 
 
+      </Box>
 
 
-          </div>
+      <Popover
+        id={props.num}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+      >
+        <Typography className={classes.typography}>
 
+          <label>განმარტება</label>
+          <br/>
+          <span>{props.definition}</span>
+          <br/>
+          <label>ნიმუში</label>
+          <br/>
+          <span>{props.sample}</span>
+          <br/>
+          <label>შენიშვნა</label>
+          <br/>
+          <span>{props.note}</span>
 
-          <Popover
-            id={props.num}
-            open={open}
-            anchorEl={anchorEl}
-            onClose={handleClose}
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'center',
-            }}
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'center',
-            }}
-          >
-            <Typography className={classes.typography}>
+        </Typography>
+      </Popover>
 
-              <label>განმარტება</label>
-                <br/>
-              <span>{props.definition}</span>
-                <br/>
-              <label>ნიმუში</label>
-                <br/>
-              <span>{props.sample}</span>
-                <br/>
-              <label>შენიშვნა</label>
-                <br/>
-              <span>{props.note}</span>
-
-            </Typography>
-          </Popover>
-
-        </div>
-      );
-  }
+    </Box>
+  );
+}
 
 
 export default Customtextfield;

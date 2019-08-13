@@ -55,6 +55,9 @@ class Fieldstructure extends React.Component{
     this.classes = classes;
     this.state = {}
     this.state.fieldValues = this.rec(field_structure,null, {"1.2":["a", "b","c"], "1.3":"dada is here"});
+
+    this.removeElement = this.removeElement.bind(this)
+    this.addElement = this.addElement.bind(this)
   }
 
   rec(arr,obj, ObjectValue) {
@@ -72,7 +75,21 @@ class Fieldstructure extends React.Component{
     return obj;
   }
 
+  removeElement(num, index){
+    //es maqcs dasamtavrebeli!!!!
+    this.setState(state=>{
+      state.fieldValues[num].splice(index,1)
 
+    })
+    this.state.fieldValues[num].splice(index,1)
+  }
+
+  addElement(num){
+    this.state.fieldValues[num].push("")
+  }
+
+
+/*
 
   componentWillMount(){
 
@@ -89,6 +106,7 @@ class Fieldstructure extends React.Component{
   handleChange(val) {
 
   }
+*/
 
   list(data) {
     const children = (items) => {
@@ -99,7 +117,7 @@ class Fieldstructure extends React.Component{
 
     return data.map((node, index) => {
       return <Item key={ node.num } label={ node.label } num={node.num}>
-        { (node.children && node.children.length )? children(node.children):<div><CustomTextField key={node.num}  elementsArr={this.state.fieldValues[node.num]} handleChange={this.handleChange} label={node.label} value={this.state.fieldValues[node.num]} nums={node.num}  definition={node.definition} sample={node.sample} note={node.note}/></div> }
+        { (node.children && node.children.length )? children(node.children):<div><CustomTextField key={node.num}  addElement={this.addElement}  removeElement={this.removeElement} elementsArr={this.state.fieldValues[node.num]} handleChange={this.handleChange} label={node.label} value={this.state.fieldValues[node.num]} nums={node.num}  definition={node.definition} sample={node.sample} note={node.note}/></div> }
 
 
       </Item>
