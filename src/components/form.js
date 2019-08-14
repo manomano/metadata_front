@@ -76,16 +76,26 @@ class Fieldstructure extends React.Component{
   }
 
   removeElement(num, index){
-    //es maqcs dasamtavrebeli!!!!
-    this.setState(state=>{
-      state.fieldValues[num].splice(index,1)
 
+    this.setState(function (prevState) {
+      prevState.fieldValues[num].splice(index,1)
+      return {
+        fieldValues: prevState.fieldValues
+      }
     })
-    this.state.fieldValues[num].splice(index,1)
+
   }
 
+
   addElement(num){
-    this.state.fieldValues[num].push("")
+
+    this.setState(function (prevState) {
+      prevState.fieldValues[num].push("")
+      return {
+        fieldValues: prevState.fieldValues
+      }
+    })
+
   }
 
 
