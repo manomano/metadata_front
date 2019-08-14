@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e199f5eb-504e-48ea-a9b9-1f1811f16c20" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/AuthHelperMethods.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/signIn.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/AppBar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/CheckBoxList.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/CustomSelectField.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AuthHelperMethods.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthHelperMethods.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CustomTextField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomTextField.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,10 +22,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/App.js">
+        <entry file="file://$PROJECT_DIR$/src/components/form.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="12" lean-forward="true" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+            <state relative-caret-position="651">
+              <caret line="98" lean-forward="true" selection-start-line="98" selection-end-line="98" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -35,32 +34,44 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/index.js">
+        <entry file="file://$PROJECT_DIR$/src/components/CustomSelectField.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="595">
+              <caret line="235" column="7" selection-start-line="235" selection-start-column="7" selection-end-line="235" selection-end-column="7" />
               <folding>
-                <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#88#140#0" expanded="true" />
+                <element signature="e#2150#2266#0" />
+                <element signature="e#2272#2477#0" />
+                <element signature="e#2483#2603#0" />
+                <element signature="e#2609#2726#0" />
+                <element signature="e#2732#2852#0" />
+                <element signature="e#2858#2968#0" />
+                <element signature="e#2974#3137#0" />
+                <element signature="e#3143#3317#0" />
+                <element signature="e#3323#3470#0" />
+                <element signature="e#3476#3598#0" />
+                <element signature="e#3604#3716#0" />
+                <element signature="e#3722#3878#0" />
+                <element signature="e#3884#4019#0" />
+                <element signature="e#4025#4183#0" />
+                <element signature="e#4189#4345#0" />
+                <element signature="e#4351#4554#0" />
+                <element signature="e#4560#4713#0" />
+                <element signature="e#4719#4839#0" />
+                <element signature="e#4845#4992#0" />
+                <element signature="e#4998#5151#0" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/field_structure.js">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/form.js">
+        <entry file="file://$PROJECT_DIR$/src/components/CheckBoxList.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="620">
-              <caret line="78" column="33" selection-start-line="78" selection-start-column="33" selection-end-line="78" selection-end-column="33" />
+            <state relative-caret-position="404">
+              <caret line="37" column="7" lean-forward="true" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
-                <element signature="n#!!block;n#componentWillMount#0;n#Fieldstructure#0" />
-                <element signature="n#!!block;n#componentWillReceiveProps#0;n#Fieldstructure#0" />
-                <element signature="n#!!block;n#componentWillUpdate#0;n#Fieldstructure#0" />
               </folding>
             </state>
           </provider>
@@ -69,10 +80,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/CustomTextField.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="91" column="23" lean-forward="true" selection-start-line="91" selection-start-column="23" selection-end-line="91" selection-end-column="23" />
+            <state relative-caret-position="663">
+              <caret line="81" column="18" lean-forward="true" selection-start-line="81" selection-start-column="18" selection-end-line="81" selection-end-column="29" />
               <folding>
-                <element signature="e#79#133#0" expanded="true" />
+                <element signature="e#88#140#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -109,7 +120,13 @@
       <find>this.domain</find>
       <find>redirect</find>
       <find>removeElement</find>
+      <find>document.location</find>
+      <find>removeItem</find>
       <find>props.nums</find>
+      <find>console</find>
+      <find>elementsArr</find>
+      <find>css</find>
+      <find>conso</find>
     </findStrings>
     <replaceStrings>
       <replace>,</replace>
@@ -130,8 +147,11 @@
         <option value="$PROJECT_DIR$/src/components/signIn.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/components/AuthHelperMethods.js" />
+        <option value="$PROJECT_DIR$/src/components/AppBar.js" />
         <option value="$PROJECT_DIR$/src/components/CustomTextField.js" />
         <option value="$PROJECT_DIR$/src/components/form.js" />
+        <option value="$PROJECT_DIR$/src/components/CheckBoxList.js" />
+        <option value="$PROJECT_DIR$/src/components/CustomSelectField.js" />
       </list>
     </option>
   </component>
@@ -230,7 +250,7 @@
       <workItem from="1565346904319" duration="6679000" />
       <workItem from="1565356696818" duration="31000" />
       <workItem from="1565356753674" duration="18908000" />
-      <workItem from="1565615155367" duration="34093000" />
+      <workItem from="1565615155367" duration="55531000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1565623398638</created>
@@ -239,17 +259,31 @@
       <option name="project" value="LOCAL" />
       <updated>1565623398638</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="bulk changes: authorization, Routing, fieldStructure changes">
+      <created>1565711430329</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1565711430330</updated>
+    </task>
+    <task id="LOCAL-00003" summary="bug fixed: repeated textField, addElement, removeElement works!">
+      <created>1565771201095</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1565771201095</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59711000" />
+    <option name="totallyTimeSpent" value="81149000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1928" y="-8" width="1936" height="1216" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.09536354" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23814541" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -269,7 +303,7 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.2497309" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18967333" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23814541" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -294,7 +328,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="first commit" />
+    <MESSAGE value="bulk changes: authorization, Routing, fieldStructure changes" />
+    <MESSAGE value="bug fixed: repeated textField, addElement, removeElement works!" />
+    <option name="LAST_COMMIT_MESSAGE" value="bug fixed: repeated textField, addElement, removeElement works!" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/node_modules/react-jss/dist/react-jss.min.js">
@@ -314,6 +350,9 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/field_structure.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -324,15 +363,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/field_structure.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/signIn.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
+        <state relative-caret-position="119">
           <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/AuthHelperMethods.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="70" column="8" selection-start-line="70" selection-start-column="2" selection-end-line="70" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/AppBar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="9" lean-forward="true" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -347,32 +400,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/AuthHelperMethods.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="40" column="19" lean-forward="true" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/CustomTextField.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="91" column="23" lean-forward="true" selection-start-line="91" selection-start-column="23" selection-end-line="91" selection-end-column="23" />
+        <state relative-caret-position="663">
+          <caret line="81" column="18" lean-forward="true" selection-start-line="81" selection-start-column="18" selection-end-line="81" selection-end-column="29" />
           <folding>
-            <element signature="e#79#133#0" expanded="true" />
+            <element signature="e#88#140#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/form.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="620">
-          <caret line="78" column="33" selection-start-line="78" selection-start-column="33" selection-end-line="78" selection-end-column="33" />
+        <state relative-caret-position="651">
+          <caret line="98" lean-forward="true" selection-start-line="98" selection-end-line="98" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
-            <element signature="n#!!block;n#componentWillMount#0;n#Fieldstructure#0" />
-            <element signature="n#!!block;n#componentWillReceiveProps#0;n#Fieldstructure#0" />
-            <element signature="n#!!block;n#componentWillUpdate#0;n#Fieldstructure#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/CustomSelectField.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="235" column="7" selection-start-line="235" selection-start-column="7" selection-end-line="235" selection-end-column="7" />
+          <folding>
+            <element signature="e#88#140#0" expanded="true" />
+            <element signature="e#2150#2266#0" />
+            <element signature="e#2272#2477#0" />
+            <element signature="e#2483#2603#0" />
+            <element signature="e#2609#2726#0" />
+            <element signature="e#2732#2852#0" />
+            <element signature="e#2858#2968#0" />
+            <element signature="e#2974#3137#0" />
+            <element signature="e#3143#3317#0" />
+            <element signature="e#3323#3470#0" />
+            <element signature="e#3476#3598#0" />
+            <element signature="e#3604#3716#0" />
+            <element signature="e#3722#3878#0" />
+            <element signature="e#3884#4019#0" />
+            <element signature="e#4025#4183#0" />
+            <element signature="e#4189#4345#0" />
+            <element signature="e#4351#4554#0" />
+            <element signature="e#4560#4713#0" />
+            <element signature="e#4719#4839#0" />
+            <element signature="e#4845#4992#0" />
+            <element signature="e#4998#5151#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/CheckBoxList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="37" column="7" lean-forward="true" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>

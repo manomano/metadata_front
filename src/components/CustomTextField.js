@@ -49,18 +49,6 @@ function Customtextfield(props) {
 
   const [elementsArr, setElementsArr] = useState(dada);
 
-  /*useEffect(() => {
-    elementsArr.shift();
-    setElementsArr(elementsArr => [...elementsArr])
-
-
-  }, []);*/
-
-
-  if (props.value.map) {
-    console.log(props.nums, elementsArr);
-  }
-
 
   const open = Boolean(anchorEl);
 
@@ -73,20 +61,13 @@ function Customtextfield(props) {
   }
 
   function addElement() {
-
-    /*setElementsArr([...elementsArr, ""]);
-    console.log(elementsArr)*/
     props.addElement(props.nums);
   }
 
   function removeElement(i) {
-   /* elementsArr.splice(i, 1)
-    setElementsArr([...elementsArr]);*/
-   props.removeElement(props.nums,i);
+      props.removeElement(props.nums,i);
   }
 
-
-  //aq isaa problema rom i -uri elementi ar vici vinaa, anu araswored vezeb
 
   return (
     <Box display="flex"
@@ -108,7 +89,7 @@ function Customtextfield(props) {
       </Box>
       <Box component="span" display="inline-block" css={{marginTop: 25}} p={1} m={1}>
         <Button aria-describedby={props.num} variant="contained" onClick={handleClick}>
-          Open Popover
+          აღწერა/განმარტება
         </Button>
       </Box>
       {props.value.map ?
