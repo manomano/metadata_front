@@ -33,7 +33,18 @@ const useStyles = makeStyles(theme => ({
   dense: {
     marginTop: theme.spacing(2),
   },
-  button: {margin: '0 0 0 0'}
+  button: {margin: '0 0 0 0'},
+  repeatedContainer:{
+    width: '60%',
+    //border:'1px solid #ececec',
+    //borderRadius:5,
+    padding:5,
+    '& div':{
+      borderBottom:'1px solid #ececec',
+      padding:5,
+      margin:'5 0 5 0',
+    }
+  }
   /* menu: {
      width: 200,
    },*/
@@ -44,22 +55,13 @@ const useStyles = makeStyles(theme => ({
 
 
 
-function Customselectfield(props) {
+function Customselectfieldmultiple(props) {
 
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [openDialogue, setOpenDialogue] = React.useState(false);
-  const elementsArrCopy = [...props.elementsArr]
+  const [theList, setTheList] = React.useState([...props.value])
   let labelWidth = 180
-
-
-  if(props.value.map){
-    elementsArrCopy.splice(0,1)
-  }
-
-  const dada = props.value.map?[...(elementsArrCopy)]:[props.elementsArr];
-
-  const [elementsArr, setElementsArr] = useState(dada);
 
 
   const open = Boolean(anchorEl);
@@ -73,15 +75,29 @@ function Customselectfield(props) {
   }
 
   function addElement() {
-    props.addElement(props.nums);
+    props.addElement(props.num);
   }
 
   function removeElement(i) {
-    props.removeElement(props.nums,i);
+    props.removeElement(props.num,i);
   }
 
-  function handleChange() {
+  function handleChange(value) {
 
+    setTheList(function (prevState) {
+
+      const currentIndex  = prevState.findIndex(x=>x.value==value.name)
+      const newChecked = [...prevState];
+
+      if (currentIndex === -1) {
+        newChecked.push({value:value.name});
+      } else {
+        newChecked.splice(currentIndex, 1);
+      }
+
+
+      return newChecked
+    });
   }
 
   function handleOpenDialogue(){
@@ -89,16 +105,19 @@ function Customselectfield(props) {
   }
 
   function handleCloseDialogue() {
+    setTheList(function (prevState) {
+      return props.value
+    })
+
+
     setOpenDialogue(false);
   }
 
   function handleSelect(){
+
+    props.onListChange(props.num, theList)
     setOpenDialogue(false);
-
   }
-
-
-
 
 
 
@@ -210,7 +229,7 @@ function Customselectfield(props) {
          p={3}
          m={1}
          css={{maxWidth: 900, border: '1px solid #ececec', borderRadius: 7}}>
-      <Box display="inline-block"  css={{width: '60%',border:'1px solid red'}} >
+      <Box display="inline-block"  className={classes.repeatedContainer} >
         {
           props.value && props.value.map?
             props.value.map(function (row, index) {
@@ -236,7 +255,7 @@ function Customselectfield(props) {
       >
         <DialogTitle id="alert-dialog-title">აირჩიეთ ჩამონათვალიდან, შიგძლიათ აირჩიოთ რამდენიმე პუნქტი</DialogTitle>
         <DialogContent>
-          <CheckboxList selectedValues ={props.value}   multiple={!!props.value.map} source={selectSource}/>
+          <CheckboxList selectedValues ={theList} handleChange={handleChange} multiple={!!props.value.map} source={selectSource}/>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCloseDialogue} color="primary">
@@ -286,5 +305,5 @@ function Customselectfield(props) {
 }
 
 
-export default Customselectfield;
+export default Customselectfieldmultiple;
 

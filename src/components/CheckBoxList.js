@@ -25,6 +25,9 @@ export default function CheckboxList(props) {
   const handleToggle = value => () => {
 
 
+    props.handleChange(value);
+    return;
+
     setChecked(function (prevState) {
 
       const currentIndex  = prevState.findIndex(x=>x.value==value.name)
@@ -44,6 +47,8 @@ export default function CheckboxList(props) {
 
   return (
     <List className={classes.root}>
+
+
       {props.source.map(value => {
         const labelId = `checkbox-list-label-${value.domain}`;
 
@@ -52,7 +57,7 @@ export default function CheckboxList(props) {
             <ListItemIcon>
               <Checkbox
                 edge="start"
-                checked={checked.findIndex(x=>x.value==value.name) !== -1}
+                checked={props.selectedValues.findIndex(x=>x.value==value.name) !== -1}
                 tabIndex={-1}
                 disableRipple
                 inputProps={{ 'aria-labelledby': labelId }}

@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e199f5eb-504e-48ea-a9b9-1f1811f16c20" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/AppBar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/CheckBoxList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/CustomSelectField.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/CustomTextFieldMultiple.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AuthHelperMethods.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthHelperMethods.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CustomTextField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomTextField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CheckBoxList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CheckBoxList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CustomSelectField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomSelectField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CustomTextField.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -24,8 +23,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/form.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="651">
-              <caret line="98" lean-forward="true" selection-start-line="98" selection-end-line="98" />
+            <state relative-caret-position="102">
+              <caret line="48" column="16" lean-forward="true" selection-start-line="48" selection-start-column="16" selection-end-line="48" selection-end-column="16" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -36,8 +35,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/CustomSelectField.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="235" column="7" selection-start-line="235" selection-start-column="7" selection-end-line="235" selection-end-column="7" />
+            <state relative-caret-position="1178">
+              <caret line="307" column="40" selection-start-line="307" selection-start-column="40" selection-end-line="307" selection-end-column="40" />
               <folding>
                 <element signature="e#88#140#0" expanded="true" />
                 <element signature="e#2150#2266#0" />
@@ -66,24 +65,21 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/CheckBoxList.js">
+        <entry file="file://$PROJECT_DIR$/src/components/CustomTextFieldMultiple.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="37" column="7" lean-forward="true" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="527">
+              <caret line="36" column="33" lean-forward="true" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/CustomTextField.js">
+        <entry file="file://$PROJECT_DIR$/src/components/CheckBoxList.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="81" column="18" lean-forward="true" selection-start-line="81" selection-start-column="18" selection-end-line="81" selection-end-column="29" />
+            <state relative-caret-position="595">
+              <caret line="50" selection-start-line="50" selection-end-line="50" />
               <folding>
-                <element signature="e#88#140#0" expanded="true" />
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -124,9 +120,11 @@
       <find>removeItem</find>
       <find>props.nums</find>
       <find>console</find>
-      <find>elementsArr</find>
       <find>css</find>
       <find>conso</find>
+      <find>nums</find>
+      <find>elementsArr</find>
+      <find>handleChange</find>
     </findStrings>
     <replaceStrings>
       <replace>,</replace>
@@ -149,9 +147,9 @@
         <option value="$PROJECT_DIR$/src/components/AuthHelperMethods.js" />
         <option value="$PROJECT_DIR$/src/components/AppBar.js" />
         <option value="$PROJECT_DIR$/src/components/CustomTextField.js" />
-        <option value="$PROJECT_DIR$/src/components/form.js" />
         <option value="$PROJECT_DIR$/src/components/CheckBoxList.js" />
         <option value="$PROJECT_DIR$/src/components/CustomSelectField.js" />
+        <option value="$PROJECT_DIR$/src/components/form.js" />
       </list>
     </option>
   </component>
@@ -250,7 +248,7 @@
       <workItem from="1565346904319" duration="6679000" />
       <workItem from="1565356696818" duration="31000" />
       <workItem from="1565356753674" duration="18908000" />
-      <workItem from="1565615155367" duration="55531000" />
+      <workItem from="1565615155367" duration="60928000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1565623398638</created>
@@ -273,11 +271,18 @@
       <option name="project" value="LOCAL" />
       <updated>1565771201095</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="custom select field: works partially">
+      <created>1565796398944</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1565796398944</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81149000" />
+    <option name="totallyTimeSpent" value="86546000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1928" y="-8" width="1936" height="1216" extended-state="6" />
@@ -330,7 +335,8 @@
     <MESSAGE value="first commit" />
     <MESSAGE value="bulk changes: authorization, Routing, fieldStructure changes" />
     <MESSAGE value="bug fixed: repeated textField, addElement, removeElement works!" />
-    <option name="LAST_COMMIT_MESSAGE" value="bug fixed: repeated textField, addElement, removeElement works!" />
+    <MESSAGE value="custom select field: works partially" />
+    <option name="LAST_COMMIT_MESSAGE" value="custom select field: works partially" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/node_modules/react-jss/dist/react-jss.min.js">
@@ -410,10 +416,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/CheckBoxList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/form.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="651">
-          <caret line="98" lean-forward="true" selection-start-line="98" selection-end-line="98" />
+        <state relative-caret-position="102">
+          <caret line="48" column="16" lean-forward="true" selection-start-line="48" selection-start-column="16" selection-end-line="48" selection-end-column="16" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -422,8 +438,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/CustomSelectField.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="235" column="7" selection-start-line="235" selection-start-column="7" selection-end-line="235" selection-end-column="7" />
+        <state relative-caret-position="1178">
+          <caret line="307" column="40" selection-start-line="307" selection-start-column="40" selection-end-line="307" selection-end-column="40" />
           <folding>
             <element signature="e#88#140#0" expanded="true" />
             <element signature="e#2150#2266#0" />
@@ -450,13 +466,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/CheckBoxList.js">
+    <entry file="file://$PROJECT_DIR$/src/components/CustomTextFieldMultiple.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="37" column="7" lean-forward="true" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="527">
+          <caret line="36" column="33" lean-forward="true" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
         </state>
       </provider>
     </entry>

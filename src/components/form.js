@@ -1,7 +1,7 @@
 import React from 'react';
 import field_structure from '../field_structure'
 import injectSheet, {withStyles} from 'react-jss'
-import CustomTextField from './CustomTextField'
+import Customselectfieldmultiple from './CustomTextFieldMultiple'
 import CustomSelectField from './CustomSelectField'
 import ButtonAppBar from './AppBar'
 import Button from '@material-ui/core/Button';
@@ -54,6 +54,7 @@ class Fieldstructure extends React.Component {
     this.removeElement = this.removeElement.bind(this)
     this.addElement = this.addElement.bind(this);
     this.list = this.list.bind(this)
+    this.onListChange = this.onListChange.bind(this);
   }
 
   rec = (arr, obj, ObjectValue) => {
@@ -95,6 +96,15 @@ class Fieldstructure extends React.Component {
 
   }
 
+  onListChange(num, arr){
+    this.setState(function (prevState) {
+      prevState.fieldValues[num] = arr;
+      return {
+        fieldValues: prevState.fieldValues
+      }
+    })
+  }
+
   selectFieldTypes = {'SELECT_FIELD':true, 'SELECT_FIELD_REPEATABLE':true, 'SELECT_FIELD_RECOMMENDED':true,'SELECT_FIELD_MULTIPLESELECTION':true}
 
   list=(data) => {
@@ -109,14 +119,27 @@ class Fieldstructure extends React.Component {
         {(node.children && node.children.length) ? children(node.children) :
           <div>
             {this.selectFieldTypes.hasOwnProperty(node.fieldType)?
-            <CustomSelectField key={node.num} addElement={this.addElement} removeElement={this.removeElement}
-                                elementsArr={this.state.fieldValues[node.num]} handleChange={this.handleChange}
-                                label={node.label} value={this.state.fieldValues[node.num]} nums={node.num}
-                                definition={node.definition} sample={node.sample} note={node.note}/>:
-              <CustomTextField key={node.num} addElement={this.addElement} removeElement={this.removeElement}
-                                 elementsArr={this.state.fieldValues[node.num]} handleChange={this.handleChange}
-                                 label={node.label} value={this.state.fieldValues[node.num]} nums={node.num}
-                                 definition={node.definition} sample={node.sample} note={node.note}/>}
+            <CustomSelectField key={node.num}
+                               onListChange ={this.onListChange}
+                               /*addElement={this.addElement}
+                               removeElement={this.removeElement}*/
+                               /*handleChange={this.handleChange}*/
+                               label={node.label}
+                               value={this.state.fieldValues[node.num]} num={node.num}
+                               definition={node.definition}
+                               sample={node.sample}
+                               note={node.note}/>:
+              <Customselectfieldmultiple key={node.num}
+                               addElement={this.addElement}
+                               removeElement={this.removeElement}
+                               elementsArr={this.state.fieldValues[node.num]}
+                               handleChange={this.handleChange}
+                               label={node.label}
+                               value={this.state.fieldValues[node.num]}
+                               nums={node.num}
+                               definition={node.definition}
+                               sample={node.sample}
+                               note={node.note}/>}
 
             </div>}
 
