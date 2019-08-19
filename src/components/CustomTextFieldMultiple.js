@@ -39,6 +39,8 @@ function Customtextfield(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const elementsArrCopy = [...props.elementsArr]
+  const myTestValue = props.value.map?props.value[0]:props.value
+
 
 
   if(props.value.map){
@@ -48,7 +50,11 @@ function Customtextfield(props) {
   const dada = props.value.map?[...(elementsArrCopy)]:[props.elementsArr];
 
   const [elementsArr, setElementsArr] = useState(dada);
+  const [thevalue, setTheValue] = useState(props.value.map?props.value[0]:props.value)
+  /*useEffect(()=>{
+    props.handleChange(props.num, thevalue);
 
+  })*/
 
   const open = Boolean(anchorEl);
 
@@ -61,12 +67,34 @@ function Customtextfield(props) {
   }
 
   function addElement() {
-    props.addElement(props.nums);
+    props.addElement(props.num);
   }
 
   function removeElement(i) {
-      props.removeElement(props.nums,i);
+      props.removeElement(props.num,i);
   }
+
+  function onchange(event) {
+    //setTheValue(event.target.value)
+    setElementsArr(function (prevState) {
+      if(prevState.map){
+        prevState[0] = event.target.value;
+      }else{
+        prevState = event.target.value;
+      }
+
+
+    })
+    props.handleChange(props.num, event.target.value);
+  }
+
+
+  function onListChange(event, index){
+      const value = event.target.value
+      const num = props.num;
+      props.onListChangeSpecial({ index, value, num})
+  }
+
 
 
   return (
@@ -74,13 +102,13 @@ function Customtextfield(props) {
          flexWrap="wrap"
          p={3}
          m={1}
-         css={{maxWidth: 900, border: '1px solid #ececec', borderRadius: 7}}>
+         css={{maxWidth: 900, border: '1px solid #ececec', borderRadius: 7, padding:0}}>
       <Box component="div" css={{width: 550}} display="inline" p={1} m={1}>
         <TextField
           id="standard-name"
           label={props.label}
-          value={(props.value.map ? props.value[0] : props.value)}
-          //onChange={props.handleChange(this.value)}
+          value={elementsArr[0]}
+          onChange={(e)=>{onchange(e)}}
           margin="normal"
           className={classes.textField}
           variant="outlined"
@@ -107,7 +135,7 @@ function Customtextfield(props) {
                   <TextField
                     label={props.label}
                     value={props.value[i+1]}
-                    //onChange={props.handleChange(this.value)}
+                    onChange={(e)=>{onListChange(e,i+1)}}
                     margin="normal"
                     className={classes.textField}
                     variant="outlined"
