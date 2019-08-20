@@ -76,7 +76,7 @@ function Customtextfield(props) {
 
   function onchange(event) {
     //setTheValue(event.target.value)
-    setElementsArr(function (prevState) {
+   /* setElementsArr(function (prevState) {
       if(prevState.map){
         prevState[0] = event.target.value;
       }else{
@@ -84,7 +84,7 @@ function Customtextfield(props) {
       }
 
 
-    })
+    })*/
     props.handleChange(props.num, event.target.value);
   }
 
@@ -107,7 +107,7 @@ function Customtextfield(props) {
         <TextField
           id="standard-name"
           label={props.label}
-          value={elementsArr[0]}
+          value={props.value.map?props.value[0]:props.value}
           onChange={(e)=>{onchange(e)}}
           margin="normal"
           className={classes.textField}

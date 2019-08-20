@@ -5,6 +5,7 @@ import CustomTextFieldMultiple from './CustomTextFieldMultiple'
 import CustomSelectFieldMultiple from './CustomSelectFieldMultiple'
 import ButtonAppBar from './AppBar'
 import Button from '@material-ui/core/Button';
+import produce from "immer"
 
 const styles = {
   mydiv: {
@@ -109,17 +110,9 @@ class Fieldstructure extends React.Component {
   }
 
   handleChange(num, value){
-    this.setState(function (prevState) {
-      if(prevState.fieldValues[num].map){
-        prevState.fieldValues[num][0] = value;
-      }else {
-        prevState.fieldValues[num] = value;
-      }
-
-      return {
-        fieldValues: prevState.fieldValues
-      }
-    })
+    this.setState(produce(draft => {
+      draft.fieldValues[num] = value
+    }))
   }
 
 
@@ -181,13 +174,13 @@ class Fieldstructure extends React.Component {
     return (
       <div>
         {/*<Button onClick={this.scrollToMyRef}>scrollTo</Button>*/}
-        <ButtonAppBar/>
-        <ul>
-          {this.list(field_structure)}
-        </ul>
-      </div>)
+<ButtonAppBar/>
+<ul>
+{this.list(field_structure)}
+</ul>
+</div>)
 
-  }
+}
 
 }
 
