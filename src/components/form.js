@@ -1,5 +1,6 @@
-import React from 'react';
-import field_structure from '../field_structure'
+import React, { memo } from 'react';
+import field_structure from '../field_structure';
+import enums from '../enums';
 import injectSheet, {withStyles} from 'react-jss'
 import CustomTextFieldMultiple from './CustomTextFieldMultiple'
 import CustomSelectFieldMultiple from './CustomSelectFieldMultiple'
@@ -9,6 +10,8 @@ import produce from "immer"
 import TextField from '@material-ui/core/TextField';
 import Infobox from './Infobox'
 import Box from '@material-ui/core/Box'
+import {Select,MenuItem, Menu,  InputLabel,FormControl, Typography,Tooltip  } from "@material-ui/core";
+
 
 const styles = {
   mydiv: {
@@ -22,14 +25,17 @@ const styles = {
     },
     'margin': '2%',
     background: 'red'
-
   },
   button: {margin: '0 0 0 0'},
   textField: {
     marginLeft: 1,
     marginRight: 1
     //theme.spacing(1)
-  }
+  },
+  formControl: {
+   // margin: theme.spacing(1),
+    minWidth: 120,
+  },
 
 }
 
@@ -37,7 +43,7 @@ const stylesA = theme => (styles);
 const MyContext = React.createContext(null);
 
 
-class Item extends React.Component {
+class Item extends React.PureComponent {
 
   constructor(props, classes) {
     super(props)
@@ -53,7 +59,12 @@ class Item extends React.Component {
 }
 
 
-class Fieldstructure extends React.Component {
+
+
+
+
+
+class Fieldstructure extends React.PureComponent {
 
 
   constructor(props, classes) {
@@ -73,9 +84,8 @@ class Fieldstructure extends React.Component {
     this.onListChange = this.onListChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.onListChangeSpecial = this.onListChangeSpecial.bind(this);
-    this.addElement = this.addElement.bind(this)
-
-    console.log(this.state.fieldValues)
+    this.addElement = this.addElement.bind(this);
+    this.fieldTypesToIgnore = ['TREE_FIELD_OBJECT', 'TREE_FIELD_REPEATABLE', 'TREE_FIELD_REPEATABLE_INSIDE'];
   }
 
   rec = (arr, obj, ObjectValue) => {
@@ -108,15 +118,19 @@ class Fieldstructure extends React.Component {
       }
     })
 
+
+
+
   }
 
 
   addElement(node) {
 
     this.setState(function (prevState) {
-      prevState.fieldValues[node.num].push("")
+      let prevClone = {...prevState};
+      prevClone.fieldValues[node.num].push("")
       return {
-        fieldValues: prevState.fieldValues
+        fieldValues: prevClone.fieldValues
       }
     })
 
@@ -124,14 +138,17 @@ class Fieldstructure extends React.Component {
 
   onListChange(num, arr) {
     this.setState(function (prevState) {
-      prevState.fieldValues[num] = arr;
+      let prevClone = {...prevState};
+      prevClone.fieldValues[num] = arr;
       return {
-        fieldValues: prevState.fieldValues
+        fieldValues: prevClone.fieldValues
       }
     })
   }
 
   handleChange(event, node, index) {
+
+
     const self = this;
     const value  = event.target.value;
     this.setState(function (draft) {
@@ -149,9 +166,10 @@ class Fieldstructure extends React.Component {
 
   onListChangeSpecial(obj) {
     this.setState(function (prevState) {
-      prevState.fieldValues[obj.num][obj.index] = obj.value;
+      let prevClone = {...prevState};
+      prevClone.fieldValues[obj.num][obj.index] = obj.value;
       return {
-        fieldValues: prevState.fieldValues
+        fieldValues: prevClone.fieldValues
       }
     })
   }
@@ -164,7 +182,18 @@ class Fieldstructure extends React.Component {
     'SELECT_FIELD_MULTIPLESELECTION': true
   }
 
+  getFields(node){
+    return <div></div>
+  }
+
+
   getField =(node)=>{
+
+    if(this.fieldTypesToIgnore.indexOf(node.fieldType)>=0){
+      return this.getFields(node);
+
+    }
+
     switch(node.fieldType){
       case 'TEXT_FIELD':
 
@@ -189,6 +218,50 @@ class Fieldstructure extends React.Component {
 
 
         </Box>
+      case 'SELECT_FIELD':
+
+        return <Box display="flex" flex-direction="right" flexWrap="wrap" css={{maxWidth: '65%', padding:0, border:'0px solid red'}}>
+          <Box css={{width: '70%', padding:0}} p={0} m={0}>
+            <FormControl style={{minWidth:300}}>
+            <Select value={this.state.fieldValues[node.num]} onChange={(e)=>{this.handleChange(e, node)}}>
+              {
+                enums.keys[node.num.replace(/\./g,"_")].table.map((x,i) => {
+                  return <MenuItem key={"el_"+node.num+"_"+i} value={x.name}>{x.name}</MenuItem>
+                })
+              }
+            </Select>
+            </FormControl>
+          </Box>
+          <Box css={{width: '18%', marginTop:20, paddingLeft:15}} p={0} m={0}>
+            <Infobox definition={node.definition} sample={node.sample} note={node.note}/>
+          </Box>
+        </Box>
+
+      case 'SELECT_FIELD_MULTIPLESELECTION':
+        //return node.num.replace(".","_") + ': rame'+ JSON.stringify(enums.keys[node.num.replace(/\./g,"_")]) + ' '
+
+        return <Box display="flex" flex-direction="right" flexWrap="wrap" css={{maxWidth: '65%', padding:0, border:'0px solid red'}}>
+          <Box css={{width: '70%', padding:0}} p={0} m={0}>
+            <FormControl style={{minWidth:300}}>
+
+              <Select placeholder={node.label} value={this.state.fieldValues[node.num]} onChange={(e)=>{this.handleChange(e, node)}}>
+                {
+                  enums.keys[node.num.replace(/\./g,"_")].table.map(x => {
+                    return <MenuItem value={x.name} key={x.name} style={{'fontSize':'10px'}}>
+                      <Tooltip title={x.explanation}><div>{x.name }</div></Tooltip>
+                    </MenuItem>
+                  })
+
+                }
+
+
+              </Select>
+            </FormControl>
+          </Box>
+          <Box css={{width: '18%', marginTop:20, paddingLeft:15}} p={0} m={0}>
+            <Infobox definition={node.definition} sample={node.sample} note={node.note}/>
+          </Box>
+        </Box>
 
       case 'TEXT_FIELD_REPEATABLE':
         return this.state.fieldValues[node.num].map((el,index)=>{
@@ -205,7 +278,9 @@ class Fieldstructure extends React.Component {
                       className={this.classes.textField}
                       variant="outlined"
                       fullWidth
-            /></Box>
+            />
+
+            </Box>
             <Box css={{width: '15%', marginTop:20, paddingLeft:15}} p={0} m={0}>
               <Infobox definition={node.definition} sample={node.sample} note={node.note}/>
             </Box>
@@ -214,9 +289,6 @@ class Fieldstructure extends React.Component {
                 this.removeElement(node, index)
               }}>X</Button>
             </Box>
-
-
-
           </Box>
         })
       }
@@ -236,31 +308,9 @@ class Fieldstructure extends React.Component {
     return data.map((node, index) => {
       return <Item refProp={this["ref_" + node.num]} key={node.num} label={node.label} num={node.num}
                    fieldType={node.fieldType}>
-        {(node.children && node.children.length) ? children(node.children) :
+        {(node.children && node.children.length && this.fieldTypesToIgnore.indexOf(node.fieldType)==-1) ? children(node.children) :
           <div>
-            {
-              this.getField(node)
-              /*{this.selectFieldTypes.hasOwnProperty(node.fieldType) ?
-
-              <CustomSelectFieldMultiple key={node.num}
-                                         onListChange={this.onListChange}
-                                         label={node.label}
-                                         value={this.state.fieldValues[node.num]} num={node.num}
-                                         definition={node.definition}
-                                         sample={node.sample}
-                                         note={node.note}/> :
-
-              <CustomTextFieldMultiple key={node.num}
-                                       addElement={this.addElement}
-                                       removeElement={this.removeElement}
-                                       handleChange={this.handleChange}
-                                       onListChangeSpecial={this.onListChangeSpecial}
-                                       label={node.label}
-                                       value={this.state.fieldValues[node.num]}
-                                       num={node.num}
-                                       definition={node.definition}
-                                       sample={node.sample}
-                                       note={node.note}/>}*/}
+            {this.getField(node)}
             {node.fieldType.indexOf('REPEATABLE') >= 0 && !this.selectFieldTypes.hasOwnProperty(node.fieldType)?
               <Box component="div" display="block" css={{marginBottom: 5}} >
                 <Button variant="contained" onClick={() => (this.addElement(node))}>+</Button>
@@ -282,6 +332,7 @@ class Fieldstructure extends React.Component {
       <div>
         {/*<Button onClick={this.scrollToMyRef}>scrollTo</Button>*/}
         <ButtonAppBar/>
+        <Button onClick={()=>console.log(this.state.fieldValues)}>Submit</Button>
         <ul>
           {this.list(field_structure)}
         </ul>
