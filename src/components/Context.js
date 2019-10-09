@@ -1,36 +1,25 @@
 import React, { PureComponent } from 'react'
 
-import { albums, fields } from './../formData'
-import field_structure from "../field_structure";
 
 export const FormDataContext = React.createContext()
 export class FormDataProvider extends PureComponent {
   constructor(props) {
     super(props)
-
-    //Setup initial State
-    /*const formData = {}
-    for (let i = 0; i < albums.length; i++) {
-      for (let j = 0; j < fields.length; j++) {
-        formData[`${albums[i].albumId}_${fields[j].fieldId}`] = ''
-      }
-    }*/
-
-    this.state = { fieldValues:{}, setState: this.handleSetState }
+    this.state = { fieldValues:{}, fieldStructure:[], setState: this.handleSetState, enums:{} }
   }
 
   componentDidMount(){
     fetch('http://localhost:4000/form/fields').then(res => res.json())
       .then(json => {
 
-        const generatedData = this.recursiveTraverse(json, null, {
+        const generatedData = this.recursiveTraverse(json.fields, null, {
           "10.4": [{"_id": 15, "value": "ავტორი"}, {
             "_id": 17,
             "value": "მეურვე"
           }], "1.3": "dada is here"
         });
 
-          this.setState({fieldValues: generatedData})
+          this.setState({fieldValues: generatedData, fieldStructure:json.fields, enums:json.enums[0]})
         });
 
   }
