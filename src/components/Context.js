@@ -14,10 +14,10 @@ export class FormDataProvider extends PureComponent {
       .then(json => {
 
         const generatedData = this.recursiveTraverse(json.fields, null, {
-          "10.4": [{"_id": 15, "value": "ავტორი"}, {
+          /*"10.4": [{"_id": 15, "value": "ავტორი"}, {
             "_id": 17,
             "value": "მეურვე"
-          }], "1.3": "dada is here"
+          }], "1.3": {value:"dada is here", id:17}*/
         });
         console.log(generatedData);
         this.setState({fieldValues: generatedData, fieldStructure: json.fields, enums: json.enums[0]})

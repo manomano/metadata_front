@@ -29,16 +29,13 @@ const styles = {
 
 class Input extends PureComponent {
   static contextType = FormDataContext;
-
-
-
   render() {
 
-    console.log(this.props);
+
     const {num, fieldType, children, label, classes, ind} = this.props;
     const {fieldValues, setState, enums} = this.context;
 
-    console.log(fieldType)
+
     switch (fieldType) {
       case 'TEXT_FIELD':
         return (
@@ -54,6 +51,7 @@ class Input extends PureComponent {
               })
             }
             value={fieldValues[num]? fieldValues[num].value:""}
+
           />
         )
       case 'TEXTAREA':
@@ -74,8 +72,6 @@ class Input extends PureComponent {
 
 
         const options = enums.keys[num.replace(/\./g, "_")];
-
-        console.log(num.replace(/\./g, "_"), enums);
         if(typeof (fieldValues[num])=="undefined") console.log(num);
 
         return (
