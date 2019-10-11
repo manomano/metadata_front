@@ -2,36 +2,39 @@ import React, { PureComponent } from 'react'
 import Input from './Input'
 import {withStyles} from "@material-ui/core";
 
-const styles={
-
+const styles = {
   body: {
-    paddingBottom: 15,
-    paddingLeft: 15,
-    paddingRight: 15,
+    paddingBottom: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
+    width:'80%'
   },
   formRow: {
     marginBottom: 10,
+  },
+  row:{
+    display:'flex'
   }
-}
+};
 
 class Body extends PureComponent {
   render() {
-    const {classes, ...all} = this.props
+    const {classes, ...all} = this.props;
     return (
-      <div style={styles.body}>
-        all.children && all.children.length?
-        {all.children.map((field) => {
-          const { fieldId, fieldName } = field
+      <div className={all.children && all.children.length?classes.row:classes.body}>
+        {all.children && all.children.length?
+        all.children.map((field) => {
+          const { fieldId, fieldType,num, isRequired } = field;
 
           return (
-            <div style={styles.formRow} key={fieldId}>
+            <div style={styles.formRow} key={"body_"+field.num}>
               <label htmlFor={fieldId} style={styles.rowLabel}>
-                {fieldName}
+                {num} kartofili
               </label>
-              <Input {...all} />
+              <Input {...field} />
             </div>
           )
-        })}:<Input {...all} />
+        }):<Input {...all} />}
       </div>
     )
   }
