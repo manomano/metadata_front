@@ -52,7 +52,7 @@ class Form extends PureComponent {
                 </Box>
               </Box>
                 {
-                  xlevel_2.children?
+                  xlevel_2.children && ['TREE_FIELD_REPEATABLE_INSIDE', 'TREE_FIELD_REPEATABLE', "TREE_FIELD_OBJECT"].indexOf(xlevel_2.fieldType)<0?
                   xlevel_2.children.map(xlevel_3=>{
                     return <div className={classes.level_div} key={"key_"+xlevel_3.num}>{xlevel_3.num} {xlevel_3.label}
                       <Box css={{width: '18%', marginTop:20, paddingLeft:15}} p={0} m={0}>
