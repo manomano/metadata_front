@@ -7,8 +7,8 @@ import enums from "../enums";
 const styles = {
   textInput: {
     width: '70%',
-    padding: 5,
-    fontSize: 18,
+    padding: 2,
+    fontSize: 13,
   },
   textareaInput: {
     width: '100%',
@@ -30,13 +30,15 @@ const styles = {
 class Input extends PureComponent {
   static contextType = FormDataContext;
 
+
+
   render() {
 
-
-    const {num, fieldType, children, label, classes} = this.props;
+    console.log(this.props);
+    const {num, fieldType, children, label, classes, ind} = this.props;
     const {fieldValues, setState, enums} = this.context;
-    console.log(num);
 
+    console.log(fieldType)
     switch (fieldType) {
       case 'TEXT_FIELD':
         return (
@@ -51,7 +53,7 @@ class Input extends PureComponent {
                 [`${num}`]: event.target.value
               })
             }
-            value={fieldValues[num]}
+            value={fieldValues[num]? fieldValues[num].value:""}
           />
         )
       case 'TEXTAREA':
@@ -64,19 +66,25 @@ class Input extends PureComponent {
                 [num]: event.target.value,
               })
             }
-            value={fieldValues[num]}
+            value={fieldValues[num].value}
           />
         )
 
-      case 'SELECT_FIELD' || 'SELECT_REPEATABLE':
-        const options = enums.keys[num.replace(/\./g, "_")]
+      case 'SELECT_FIELD':
+
+
+        const options = enums.keys[num.replace(/\./g, "_")];
+
+        console.log(num.replace(/\./g, "_"), enums);
+        if(typeof (fieldValues[num])=="undefined") console.log(num);
 
         return (
           <FormControl key={'formCtrl_' + num}className={classes.formControl}>
             <InputLabel htmlFor={'id_' + num}>{label}</InputLabel>
-            <Select value={fieldValues[num]} onChange={(event) =>
+            <Select value={this.props.hasOwnProperty("ind")?fieldValues[num][ind].value:fieldValues[num].value } onChange={(event) =>
               setState({
                 [num]: event.target.value,
+                ind:ind
               })
             }
                     inputProps={{
@@ -87,7 +95,7 @@ class Input extends PureComponent {
             >
 
               {
-                enums.keys[num.replace(/\./g, "_")].table.map((x,i) => {
+                options.table.map((x,i) => {
                   return <MenuItem key={'id_' + num+'_'+i} value={x.name}>{x.name}</MenuItem>
                 })
               }
@@ -98,8 +106,9 @@ class Input extends PureComponent {
 
         )
 
+
       default:
-        return null
+        return num + ' aq rame unda daiweros' + fieldType
     }
   }
 }

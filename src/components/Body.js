@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import Input from './Input'
 import {withStyles} from "@material-ui/core";
+import {FormDataContext} from './Context'
 
 const styles = {
   body: {
@@ -17,30 +18,32 @@ const styles = {
   }
 };
 
+
+
+function BodyList(props) {
+  const list = props.values;
+  const listItems = list.map((field, ind) =>
+
+    <div style={styles.formRow} key={"body_"+props.fieldDesc.num}>
+      <Input {...props.fieldDesc} fieldType= {props.fieldDesc.fieldType.replace('_REPEATABLE','') } ind={ind}  />
+    </div>
+  );
+  return <div>{listItems}</div>;
+}
+
 class Body extends PureComponent {
+  static contextType = FormDataContext;
+
   render() {
     const {classes, ...all} = this.props;
+    const allProps = {values: this.context.fieldValues[all.num], fieldDesc:all};
     return (
-      <div className={all.children && all.children.length?classes.row:classes.body}>
-        {all.children && all.children.length?
-        all.children.map((field) => {
-          const { fieldId, fieldType,num, isRequired } = field;
-
-          return (
-            <div style={styles.formRow} key={"body_"+field.num}>
-              <label htmlFor={fieldId} style={styles.rowLabel}>
-                {num} kartofili
-              </label>
-              <Input {...field} />
-            </div>
-          )
-        }):<Input {...all} />}
+      <div className={classes.body}>
+        {(typeof (this.context.fieldValues[all.num])!=='undefined' && this.context.fieldValues[all.num].map)?  <BodyList {...allProps}/>      :<Input {...all} />}
       </div>
     )
   }
 }
-
-//export default Body
 
 
 export default withStyles(styles)(Body);

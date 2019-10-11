@@ -42,28 +42,35 @@ class Form extends PureComponent {
         {this.context.fieldStructure.map(xlevel_1=>{
           return <div className={classes.level_div} key={"key_"+xlevel_1.num}>{xlevel_1.num} {xlevel_1.label}
 
-            {xlevel_1.children.map(xlevel_2=>{
+
+
+          {xlevel_1.children && xlevel_1.children.length && ['TREE_FIELD_REPEATABLE_INSIDE', 'TREE_FIELD_REPEATABLE', "TREE_FIELD_OBJECT"].indexOf(xlevel_1.fieldType)<0?
+            xlevel_1.children.map(xlevel_2=>{
               const propsToPass = {...xlevel_2};
               return <div className={classes.level_div} key={"key_"+xlevel_2.num}>{xlevel_2.num} {xlevel_2.label}
-              <Box display="flex" flex-direction="right" flexWrap="wrap" css={{maxWidth: '65%', padding:0, border:'1px solid red'}}>
-                <Body {...propsToPass}/>
-                <Box css={{width: '18%', marginTop:20, paddingLeft:15}} p={0} m={0}>
-                    <Infobox definition={xlevel_2.definition} sample={xlevel_2.sample} note={xlevel_2.note}/>
-                </Box>
-              </Box>
+
                 {
-                  xlevel_2.children && ['TREE_FIELD_REPEATABLE_INSIDE', 'TREE_FIELD_REPEATABLE', "TREE_FIELD_OBJECT"].indexOf(xlevel_2.fieldType)<0?
+                  xlevel_2.children && xlevel_2.children.length && ['TREE_FIELD_REPEATABLE_INSIDE', 'TREE_FIELD_REPEATABLE', "TREE_FIELD_OBJECT"].indexOf(xlevel_2.fieldType)<0?
                   xlevel_2.children.map(xlevel_3=>{
                     return <div className={classes.level_div} key={"key_"+xlevel_3.num}>{xlevel_3.num} {xlevel_3.label}
                       <Box css={{width: '18%', marginTop:20, paddingLeft:15}} p={0} m={0}>
                         <Infobox definition={xlevel_3.definition} sample={xlevel_3.sample} note={xlevel_3.note}/>
                       </Box>
-
                     </div>
-                  }):''
+                  }):<Box display="flex" flex-direction="right" flexWrap="wrap" css={{maxWidth: '65%', padding:0, border:'1px solid red'}}>
+                      <Body {...propsToPass}/>
+                      <Box css={{width: '18%', marginTop:20, paddingLeft:15}} p={0} m={0}>
+                        <Infobox definition={xlevel_2.definition} sample={xlevel_2.sample} note={xlevel_2.note}/>
+                      </Box>
+                    </Box>
                 }
               </div>
-            })}
+            }):<Box display="flex" flex-direction="right" flexWrap="wrap" css={{maxWidth: '65%', padding:0, border:'1px solid red'}}>
+              <Body {...xlevel_1}/>
+              <Box css={{width: '18%', marginTop:20, paddingLeft:15}} p={0} m={0}>
+                <Infobox definition={xlevel_1.definition} sample={xlevel_1.sample} note={xlevel_1.note}/>
+              </Box>
+            </Box>}
           </div>
 
         })}
