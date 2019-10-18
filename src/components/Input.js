@@ -3,6 +3,7 @@ import {MenuItem, Select, TextField, FormControl, InputLabel} from '@material-ui
 import {FormDataContext} from './Context'
 import {withStyles} from "@material-ui/core";
 import enums from "../enums";
+import DateField from './CustomDateField'
 
 const styles = {
   textInput: {
@@ -101,8 +102,10 @@ class Input extends PureComponent {
 
 
         )
-
-
+      case 'TIME_FIELD_REPEATABLE':
+        return (<DateField date="month" value={"2019-01"} />);
+      case 'TIME_FIELD':
+        return (<DateField date="month" value={"2019-01"} />);
       default:
         return num + ' aq rame unda daiweros' + fieldType
     }

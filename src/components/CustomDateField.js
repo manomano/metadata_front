@@ -62,7 +62,6 @@ export default function CustomDateField(props) {
         onChange={handleDateChange}
         max={2050}
         min={2000}
-        InputProps={{ inputProps: { min: 2000, max: 2050 } }}
       />
 
       <div className="input-group-append">
