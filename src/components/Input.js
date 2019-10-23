@@ -1,8 +1,6 @@
-import React, {PureComponent, Fragment} from 'react'
-import {MenuItem, Select, TextField, FormControl, InputLabel} from '@material-ui/core';
+import React, {PureComponent} from 'react'
 import {FormDataContext} from './Context'
 import {withStyles} from "@material-ui/core";
-import enums from "../enums";
 import DateField from './CustomDateField'
 
 const styles = {
@@ -40,15 +38,15 @@ class Input extends PureComponent {
     switch (fieldType) {
       case 'TEXT_FIELD':
         return (
-          <TextField
-            label={label}
+          <input type="text" className="form-control"
+            placeholder={label}
             margin="normal"
             variant="outlined"
             key={num}
-            style={styles.textInput}
+            /*style={styles.textInput}*/
             onChange={(event) =>
               setState({
-                [`${num}`]: event.target.value
+                [`${num}`]: event.target.value, ind
               })
             }
             value={fieldValues[num]? fieldValues[num].value:""}
@@ -57,9 +55,12 @@ class Input extends PureComponent {
         )
       case 'TEXTAREA':
         return (
+
           <textarea
+            rows="3"
+            cols={"5"}
+            className="form-control"
             key={num}
-            style={styles.textareaInput}
             onChange={(event) =>
               setState({
                 [num]: event.target.value,
@@ -67,6 +68,7 @@ class Input extends PureComponent {
             }
             value={fieldValues[num].value}
           />
+
         )
 
       case 'SELECT_FIELD':
@@ -76,29 +78,26 @@ class Input extends PureComponent {
         if(typeof (fieldValues[num])=="undefined") console.log(num);
 
         return (
-          <FormControl key={'formCtrl_' + num}className={classes.formControl}>
-            <InputLabel htmlFor={'id_' + num}>{label}</InputLabel>
-            <Select value={this.props.hasOwnProperty("ind")?fieldValues[num][ind].value:fieldValues[num].value } onChange={(event) =>
+
+
+            <select placeholder={label} className="custom-select" value={this.props.hasOwnProperty("ind")?fieldValues[num][ind].value:fieldValues[num].value } onChange={(event) =>
               setState({
                 [num]: event.target.value,
                 ind:ind
               })
             }
-                    inputProps={{
-                      name: 'select_' + num,
-                      id: 'id_' + num,
-                    }}
+
             key={'id_' + num}
             >
 
               {
                 options.table.map((x,i) => {
-                  return <MenuItem key={'id_' + num+'_'+i} value={x.name}>{x.name}</MenuItem>
+                  return <option key={'id_' + num+'_'+i} value={x.name}>{x.name}</option>
                 })
               }
 
-            </Select>
-          </FormControl>
+            </select>
+
 
 
         )

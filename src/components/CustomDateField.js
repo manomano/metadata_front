@@ -68,15 +68,16 @@ export default function CustomDateField(props) {
         <select
           onChange={handleChange}
           name="dada"
+          value={selectedValue}
           className="btn btn-outline-secondary dropdown-toggle"
         >
-          <option value="date" selected={selectedValue === "date"}>
+          <option value="date">
             Date or datetime
           </option>
-          <option value="month" selected={selectedValue === "month"}>
+          <option value="month">
             Year and month
           </option>
-          <option value="number" selected={selectedValue === "number"}>
+          <option value="number">
             Year only
           </option>
         </select>

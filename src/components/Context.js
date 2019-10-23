@@ -6,7 +6,7 @@ export const FormDataContext = React.createContext()
 export class FormDataProvider extends PureComponent {
   constructor(props) {
     super(props)
-    this.state = {fieldValues: {}, fieldStructure: [], setState: this.handleSetState, enums: {}}
+    this.state = {fieldValues: {}, fieldStructure: [], setState: this.handleSetState, enums: {}, addElement: this.addElement, removeElement: this.removeElement};
   }
 
   componentDidMount() {
@@ -74,6 +74,32 @@ export class FormDataProvider extends PureComponent {
 
     this.setState({fieldValues: {...fieldValues, [key]: obj}})
   }
+
+
+  addElement = (key)=>{
+    const {fieldValues} = this.state;
+    if(fieldValues[key].map){
+      const lastVal = fieldValues[key][fieldValues[key].length-1];
+      const newObject = {...lastVal};
+      newObject.value = {value: ""}
+      const obj = JSON.parse(JSON.stringify(fieldValues[key]));
+      obj.push(newObject);
+
+      this.setState({fieldValues: {...fieldValues, [key]: obj}})
+    }
+  }
+
+  removeElement = (key, index)=> {
+    const {fieldValues} = this.state;
+    const copied = [...fieldValues[key]];
+    copied.splice(index,1);
+    this.setState({fieldValues: {...fieldValues, [key]: copied}});
+  }
+
+
+
+
+
 
   render() {
     return (

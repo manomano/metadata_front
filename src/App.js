@@ -8,7 +8,7 @@ const Auth = new AuthHelperMethods();
 
 function App() {
   return (
-    <div className="App">
+    <div className="container" style={{width:'90%', padding:'10px', border:'1px solid #ccc'}}>
       <Router>
         <Route path="/"   render={()=>(
           Auth.loggedIn()?(<FormWrapperWithContext to="/" />):(<Redirect to="/login"/>)
