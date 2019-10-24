@@ -34,16 +34,29 @@ export class FormDataProvider extends PureComponent {
     }
     for (let i = 0; i < arr.length; i++) {
       this[("ref_" + arr[i].num).trim()] = React.createRef()
-      if (arr[i].children && arr[i].children.length && ['TREE_FIELD_REPEATABLE_INSIDE', 'TREE_FIELD_REPEATABLE', "TREE_FIELD_OBJECT"].indexOf(arr[i].fieldType) < 0) {
+      if (arr[i].children && arr[i].children.length && ['TREE_FIELD_REPEATABLE', "TREE_FIELD_OBJECT"].indexOf(arr[i].fieldType) < 0) {
         this.recursiveTraverse(arr[i].children, obj, ObjectValue)
       } else {
         arr[i].parent = arr;
-        let isObject = ['TREE_FIELD_REPEATABLE_INSIDE', 'TREE_FIELD_REPEATABLE', "TREE_FIELD_OBJECT"].indexOf(arr[i].fieldType) >= 0;
-        let initalArray = isObject ? this.generateObjectArr(arr[i]) : [{value: "", key: arr[i].num}]
-        obj[arr[i].num] = ObjectValue[arr[i].num] || (arr[i].fieldType.indexOf('_REPEATABLE') > 0 ? initalArray : {
-          value: "",
-          key: arr[i].num
-        })
+        let isObject = ['TREE_FIELD_REPEATABLE', "TREE_FIELD_OBJECT"].indexOf(arr[i].fieldType) >= 0;
+
+
+        let initialValue;
+        if(arr[i].fieldType=='TREE_FIELD_REPEATABLE'){
+          initialValue = this.generateObjectArr(arr[i]);
+        }else if(arr[i].fieldType=='TREE_FIELD_OBJECT'){
+          initialValue = this.generateObjectArr(arr[i])[0];
+        }else{
+          if(arr[i].fieldType.indexOf('_REPEATABLE')<=0){
+            initialValue = {
+              value: "",
+              key: arr[i].num
+            }
+          }else{
+            initialValue = [{value: "", key: arr[i].num}]
+          }
+        }
+        obj[arr[i].num] = ObjectValue[arr[i].num] || initialValue;
       }
     }
 
@@ -63,14 +76,27 @@ export class FormDataProvider extends PureComponent {
   handleSetState = (object) => {
     const {fieldValues} = this.state;
     const key = Object.keys(object)[0];
+    console.log(object);
 
+    let obj;
+    if(!fieldValues[key]){
+      obj = JSON.parse(JSON.stringify(fieldValues[key.substring(0,key.length-2)]));
 
-    const obj = JSON.parse(JSON.stringify(fieldValues[key]));
-    if(object.hasOwnProperty("ind") && typeof(object.ind)!=="undefined"){
-      obj[object.ind].value = object[key];
+      if(object.hasOwnProperty("ind") && typeof(object.ind)!=="undefined"){
+        obj[object.ind].objectValue[key].value = object[key];
+      }else{
+        obj.objectValue[key].value = object[key];
+      }
     }else{
-      obj.value = object[key];
+      obj = JSON.parse(JSON.stringify(fieldValues[key]));
+      if(object.hasOwnProperty("ind") && typeof(object.ind)!=="undefined"){
+        obj[object.ind].value = object[key];
+      }else{
+        obj.value = object[key];
+      }
+
     }
+
 
     this.setState({fieldValues: {...fieldValues, [key]: obj}})
   }

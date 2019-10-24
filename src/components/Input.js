@@ -34,6 +34,17 @@ class Input extends PureComponent {
     const {num, fieldType, children, label, classes, ind} = this.props;
     const {fieldValues, setState, enums} = this.context;
 
+    let theValue = "";
+    if(this.props.hasOwnProperty("ind") && this.props.ind){
+      if(fieldValues.hasOwnProperty(num)){
+        theValue = fieldValues[num][ind].value;
+      }else {
+        theValue = fieldValues[num.substring(0,num.length-2)][ind].objectValue[num].value;
+      }
+    }else{
+      theValue = fieldValues.hasOwnProperty(num)?fieldValues[num].value:fieldValues[num.substring(0,num.length-2)].objectValue[num].value;
+    }
+
 
     switch (fieldType) {
       case 'TEXT_FIELD':
@@ -43,13 +54,12 @@ class Input extends PureComponent {
             margin="normal"
             variant="outlined"
             key={num}
-            /*style={styles.textInput}*/
             onChange={(event) =>
               setState({
                 [`${num}`]: event.target.value, ind
               })
             }
-            value={fieldValues[num]? fieldValues[num].value:""}
+            value={theValue}
 
           />
         )
@@ -63,10 +73,10 @@ class Input extends PureComponent {
             key={num}
             onChange={(event) =>
               setState({
-                [num]: event.target.value,
+                [num]: event.target.value,ind
               })
             }
-            value={fieldValues[num].value}
+            value={theValue}
           />
 
         )
@@ -75,12 +85,10 @@ class Input extends PureComponent {
 
 
         const options = enums.keys[num.replace(/\./g, "_")];
-        if(typeof (fieldValues[num])=="undefined") console.log(num);
 
         return (
 
-
-            <select placeholder={label} className="custom-select" value={this.props.hasOwnProperty("ind")?fieldValues[num][ind].value:fieldValues[num].value } onChange={(event) =>
+            <select placeholder={label} className="custom-select" value={theValue} onChange={(event) =>
               setState({
                 [num]: event.target.value,
                 ind:ind
@@ -97,9 +105,25 @@ class Input extends PureComponent {
               }
 
             </select>
+        )
+      case 'SELECT_FIELD_RECOMMENDED':
 
+        let optionsRec = enums.keys[num.replace(/\./g, "_")];
 
+        if(!optionsRec){//temporary code
+          optionsRec =  enums.keys["1_5"]
+        }
+        return (
 
+          <select placeholder={label} className="custom-select" value={theValue } onChange={(event) =>  {setState({ [num]: event.target.value, ind:ind})}} key={'id_' + num}>
+            <option>select</option>
+            {
+              optionsRec.table.map((x,i) => {
+                return <option key={'id_' + num+'_'+i} value={x.name}>{x.name}</option>
+              })
+
+            }
+          </select>
         )
       case 'TIME_FIELD_REPEATABLE':
         return (<DateField date="month" value={"2019-01"} />);
