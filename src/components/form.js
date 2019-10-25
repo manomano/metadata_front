@@ -10,7 +10,6 @@ import Body from "./Body";
 
 const styles = {
   level_div:{
-
     padding:'5px 5px 5px 25px',
     // boxShadow: '0.25rem 0.25rem 0.6rem rgba(0,0,0,0.05), 0 0.5rem 1.125rem rgba(75,0,0,0.05)',
     borderRadius: '3px',
@@ -19,10 +18,6 @@ const styles = {
     borderRight:'1px solid #ccc',
     borderTop:'1px solid #ccc',
     marginTop: '1rem'
-
-  },
-  'level_div:after':{
-
   }
 }
 
@@ -55,13 +50,13 @@ class Form extends PureComponent {
 
 
 
-          {xlevel_1.children && xlevel_1.children.length && ['TREE_FIELD_REPEATABLE_INSIDE', 'TREE_FIELD_REPEATABLE', "TREE_FIELD_OBJECT"].indexOf(xlevel_1.fieldType)<0?
+          {xlevel_1.children && xlevel_1.children.length && ['TREE_FIELD_REPEATABLE', "TREE_FIELD_OBJECT"].indexOf(xlevel_1.fieldType)<0?
             xlevel_1.children.map(xlevel_2=>{
               const propsToPass = {...xlevel_2};
               return <div className={classes.level_div} key={"key_"+xlevel_2.num}>{xlevel_2.num} {xlevel_2.label}
 
                 {
-                  xlevel_2.children && xlevel_2.children.length && ['TREE_FIELD_REPEATABLE_INSIDE', 'TREE_FIELD_REPEATABLE', "TREE_FIELD_OBJECT"].indexOf(xlevel_2.fieldType)<0?
+                  xlevel_2.children && xlevel_2.children.length && ['TREE_FIELD_REPEATABLE', "TREE_FIELD_OBJECT"].indexOf(xlevel_2.fieldType)<0?
                   xlevel_2.children.map(xlevel_3=>{
                     return <div className={classes.level_div} key={"key_"+xlevel_3.num}>{xlevel_3.num} {xlevel_3.label}
                       <div className="row">
@@ -71,17 +66,16 @@ class Form extends PureComponent {
                     </div>
                   }):<div className="row">
                       <Body {...propsToPass}/>
-                      <div css={{width: '18%', marginTop:20, paddingLeft:15}} p={0} m={0}>
+                      <div>
                         <Infobox definition={xlevel_2.definition} sample={xlevel_2.sample} note={xlevel_2.note}/>
                       </div>
                     </div>
                 }
               </div>
             }):<div className="row">
-              <Body {...xlevel_1}/>
-              <Box css={{width: '18%', marginTop:20, paddingLeft:15}} p={0} m={0}>
+              <div>
                 <Infobox definition={xlevel_1.definition} sample={xlevel_1.sample} note={xlevel_1.note}/>
-              </Box>
+              </div>
             </div>}
           </div>
 

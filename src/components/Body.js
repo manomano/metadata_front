@@ -30,12 +30,13 @@ function BodyList(props) {
 
     listItems = list.map((field, ind) =>
 
-      <div className="col-8" key={"body_" + props.fieldDesc.num + "_" + ind}>
-        <div className="row" style={{border: '1px solid red'}}>
-          <div className="col-9">
-            <Input {...props.fieldDesc} fieldType={props.fieldDesc.fieldType.replace('_REPEATABLE', '')} ind={ind}/>
+      <div className="col-10" key={"body_" + props.fieldDesc.num + "_" + ind}>
+        <div className="row">
+          <div className="col-11">
+            {field.objectValue?<Inputs  {...props.fieldDesc} ind={ind} />:<Input {...props.fieldDesc} fieldType={props.fieldDesc.fieldType.replace('_REPEATABLE', '')} ind={ind}/>}
+
           </div>
-          <div className="col-3">
+          <div className="col-1">
             <button className="btn btn-danger" onClick={() => {
               props.removeElement(props.fieldDesc.num, ind)
             }}>X
@@ -45,7 +46,7 @@ function BodyList(props) {
       </div>
     );
   }
-  return <div className="row">{listItems}<div className="col-4">
+  return <div className="row">{listItems}<div className="col-2">
     <button className="btn btn-info" onClick={()=>{props.addElement(props.fieldDesc.num)}}>+</button></div>
   </div>;
 }

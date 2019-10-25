@@ -1,7 +1,8 @@
 import React, {PureComponent} from 'react'
 import {FormDataContext} from './Context'
 import {withStyles} from "@material-ui/core";
-import DateField from './CustomDateField'
+import DateField from './CustomDateField';
+import MapField from "./MapField";
 
 const styles = {
   textInput: {
@@ -25,6 +26,16 @@ const styles = {
   }
 }
 
+const coords = [
+  [43.34647059800127,41.21864926203679],
+  [46.22488856675127,41.21864926203679],
+  [46.22488856675127,42.6730522016756],
+  [43.34647059800127,42.6730522016756],
+  [43.34647059800127,41.21864926203679]
+];
+
+
+
 
 class Input extends PureComponent {
   static contextType = FormDataContext;
@@ -35,7 +46,7 @@ class Input extends PureComponent {
     const {fieldValues, setState, enums} = this.context;
 
     let theValue = "";
-    if(this.props.hasOwnProperty("ind") && this.props.ind){
+    if(this.props.hasOwnProperty("ind") && typeof(this.props.ind)!=='undefined'){
       if(fieldValues.hasOwnProperty(num)){
         theValue = fieldValues[num][ind].value;
       }else {
@@ -116,7 +127,7 @@ class Input extends PureComponent {
         return (
 
           <select placeholder={label} className="custom-select" value={theValue } onChange={(event) =>  {setState({ [num]: event.target.value, ind:ind})}} key={'id_' + num}>
-            <option>select</option>
+            <option>აირჩიე</option>
             {
               optionsRec.table.map((x,i) => {
                 return <option key={'id_' + num+'_'+i} value={x.name}>{x.name}</option>
@@ -129,6 +140,8 @@ class Input extends PureComponent {
         return (<DateField date="month" value={"2019-01"} />);
       case 'TIME_FIELD':
         return (<DateField date="month" value={"2019-01"} />);
+      case 'GEO_FIELD':
+        return (<MapField coords={coords}/>)
       default:
         return num + ' aq rame unda daiweros' + fieldType
     }
