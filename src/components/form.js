@@ -1,12 +1,8 @@
-import React, { PureComponent } from 'react'
-
-import { FormDataContext } from './Context'
+import React, { PureComponent } from 'react';
+import { FormDataContext } from './Context';
 import Infobox from "./Infobox";
-import Box from "@material-ui/core/Box";
 import {withStyles } from "@material-ui/core";
-import Input from "./Input";
 import Body from "./Body";
-
 
 const styles = {
   level_div:{
@@ -22,19 +18,14 @@ const styles = {
 }
 
 
-
-
 class Form extends PureComponent {
   static contextType = FormDataContext
   constructor(props) {
-    super(props)
-
-
+    super(props);
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   handleSubmit(e) {
-    e.preventDefault()
-    console.log('Submitting Form! Form data:', this.context.fieldValues)
+    e.preventDefault();
   }
   render() {
     const { classes } = this.props;

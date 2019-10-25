@@ -183,7 +183,7 @@ export default class MapContainer extends React.Component {
                  id="topLeftX"
                  value={this.state.coords? this.state.coords[0][0]:''}/>
         </div>
-        <div id="map" className="col-8" style={{height:'400px'}}></div>
+        <div id="map" className="col-8" style={{height:400}}></div>
         <div className="col-2 justify-content-end align-middle">
           <input type="number"
                  onChange={(event)=>{this.handleChange(event,"rightBottomX" )}}
