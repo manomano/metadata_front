@@ -26,23 +26,13 @@ const styles = {
   }
 }
 
-const coords = [
-  [43.34647059800127,41.21864926203679],
-  [46.22488856675127,41.21864926203679],
-  [46.22488856675127,42.6730522016756],
-  [43.34647059800127,42.6730522016756],
-  [43.34647059800127,41.21864926203679]
-];
-
-
-
 
 class Input extends PureComponent {
   static contextType = FormDataContext;
   render() {
 
 
-    const {num, fieldType, children, label, classes, ind} = this.props;
+    const {num, fieldType, label, ind} = this.props;
     const {fieldValues, setState, enums} = this.context;
 
     let theValue = "";
@@ -141,7 +131,7 @@ class Input extends PureComponent {
       case 'TIME_FIELD':
         return (<DateField date="month" value={"2019-01"} />);
       case 'GEO_FIELD':
-        return (<MapField coords={coords}/>)
+        return (<MapField coords={theValue} num={num} />)
       default:
         return num + ' aq rame unda daiweros' + fieldType
     }

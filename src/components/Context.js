@@ -19,7 +19,7 @@ export class FormDataProvider extends PureComponent {
             "value": "მეურვე"
           }], "1.3": {value:"dada is here", id:17}*/
         });
-        console.log(generatedData);
+
         this.setState({fieldValues: generatedData, fieldStructure: json.fields, enums: json.enums[0]})
       }).catch(function (error) {
       console.log(error);
@@ -38,13 +38,11 @@ export class FormDataProvider extends PureComponent {
         this.recursiveTraverse(arr[i].children, obj, ObjectValue)
       } else {
         arr[i].parent = arr;
-        let isObject = ['TREE_FIELD_REPEATABLE', "TREE_FIELD_OBJECT"].indexOf(arr[i].fieldType) >= 0;
-
 
         let initialValue;
-        if(arr[i].fieldType=='TREE_FIELD_REPEATABLE'){
+        if(arr[i].fieldType==='TREE_FIELD_REPEATABLE'){
           initialValue = this.generateObjectArr(arr[i]);
-        }else if(arr[i].fieldType=='TREE_FIELD_OBJECT'){
+        }else if(arr[i].fieldType==='TREE_FIELD_OBJECT'){
           initialValue = this.generateObjectArr(arr[i])[0];
         }else{
           if(arr[i].fieldType.indexOf('_REPEATABLE')<=0){

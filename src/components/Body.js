@@ -24,7 +24,7 @@ const styles = {
 function BodyList(props) {
   const list = props.values;
   let listItems;
-  if(props.fieldDesc.fieldType=="TREE_FIELD_OBJECT"){
+  if(props.fieldDesc.fieldType==="TREE_FIELD_OBJECT"){
     listItems = <Inputs {...props.fieldDesc} {...props.values}/>
   }else {
 

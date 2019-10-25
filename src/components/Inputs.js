@@ -3,7 +3,7 @@ import Input from './Input';
 
 export default function Inputs(props) {
 
-    const {num, fieldType, children, label, classes, ind} = props;
+    const {num, children, ind} = props;
     const colCount = Math.floor(12/children.length);
 
     const childElements = children.map((child, index)=>
@@ -13,5 +13,5 @@ export default function Inputs(props) {
       </div>
     );
 
-    return (<div className={"row"} key={"inputs"+num}>{childElements}</div>);
+    return (<div className={"row"} key={"inputs_"+props.hasOwnProperty("ind") && typeof(props.ind)!=='undefined'?ind+"_":""+num}>{childElements}</div>);
 }

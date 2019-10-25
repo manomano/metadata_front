@@ -4,20 +4,21 @@ import 'ol/ol.css';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import Polygon from 'ol/geom/Polygon';
-import Draw, {createRegularPolygon, createBox} from 'ol/interaction/Draw';
+import Draw, {createBox} from 'ol/interaction/Draw';
 import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer';
 import {OSM, Vector as VectorSource} from 'ol/source';
-import {Fill, RegularShape, Stroke, Style,Circle} from 'ol/style';
+import {Fill, Stroke, Style} from 'ol/style';
 import {transform} from 'ol/proj';
 import Feature from "ol/Feature";
 import CircleStyle from "ol/src/style/Circle";
+import {FormDataContext} from "./Context";
 
 
 //https://taylor.callsen.me/using-reactflux-with-openlayers-3-and-other-third-party-libraries/
 
 
 export default class MapContainer extends React.Component {
-
+  static contextType = FormDataContext;
   constructor(props) {
     super(props);
     this.state = {
@@ -74,7 +75,6 @@ export default class MapContainer extends React.Component {
     const transformedCoords = coords.map(coord=>transform(coord, 'EPSG:4326', 'EPSG:3857'));
     source.addFeature(new Feature({
       geometry: new Polygon( [transformedCoords]),
-      //labelPoint: new Point(labelCoords),
       name: 'My Polygon'
     }));
   }
@@ -90,7 +90,6 @@ export default class MapContainer extends React.Component {
       source: source,
       style: new Style({
         fill: new Fill({
-          //color: 'rgba(255, 255, 255, 0.2)',
           color: 'rgba(0, 0, 255, 0.1)',
         }),
         stroke: new Stroke({
@@ -147,11 +146,7 @@ export default class MapContainer extends React.Component {
     draw.on('drawend', function (evt) {
 
       let coordinates = evt.feature.getGeometry().getCoordinates()[0];
-
-      console.log(transform(coordinates[0], 'EPSG:3857', 'EPSG:4326'))
-
-      coordinates = coordinates.map(coordinate=>transform(coordinate, 'EPSG:3857', 'EPSG:4326'))
-
+      coordinates = coordinates.map(coordinate=>transform(coordinate, 'EPSG:3857', 'EPSG:4326'));
       self.setState({coords: coordinates, center:self.state.map.getView().getCenter()});
     });
 
@@ -160,7 +155,7 @@ export default class MapContainer extends React.Component {
       if (source.getFeatures().length > 0) {
         source.removeFeature(source.getFeatures()[0]);
       }
-    })
+    });
 
 
     if (this.state.coords) {
@@ -171,7 +166,10 @@ export default class MapContainer extends React.Component {
   }
 
   render() {
-    return (<div className="container" style={{border: '1px solid red'}}>
+    const {fieldValues, setState} = this.context;
+
+
+    return (<div className="container">
       <div className="row justify-content-center">
         <input type="number" onChange={(event)=>{this.handleChange(event,"topLeftY" )}} value={this.state.coords? this.state.coords[0][1]:''} id="topLeftY"/>
         <button className="btn btn-primary" onClick={this.handleClick}><i className="far fa-edit"></i> draw
